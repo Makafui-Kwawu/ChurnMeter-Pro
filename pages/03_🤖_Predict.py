@@ -140,6 +140,12 @@ def display_form():
         st.form_submit_button('Submit', on_click=make_prediction, kwargs=dict(pipeline=pipeline, encoder=encoder))
 
 if __name__ == '__main__':
+    # Ensure 'prediction' and 'probability' keys exist in session_state
+    if 'prediction' not in st.session_state:
+        st.session_state['prediction'] = None
+    if 'probability' not in st.session_state:
+        st.session_state['probability'] = None
+
     display_form()
 
     final_prediction = st.session_state['prediction']
